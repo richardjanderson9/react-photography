@@ -1,0 +1,10 @@
+{
+  "depcheck": {
+    "ignoreMatches": [
+      "@testing-library/react",
+      "eslint-config-react-app",
+      "husky",
+      "@fingerprintjs/fingerprintjs"
+    ]
+  }
+}
