@@ -1,6 +1,6 @@
 {
   "name": "react-photography",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "type": "module",
   "description": "My photography portfolio built with React, Vite, and Tailwind CSS.",
@@ -36,8 +36,11 @@
   "homepage": "http://localhost:3000",
   "devDependencies": {
     "@vitejs/plugin-react": "^4.6.0",
+    "eslint": "^9.31.0",
     "eslint-config-react-app": "^7.0.1",
     "husky": "^9.1.7",
+    "prettier": "^3.0.0",
+    "tailwindcss": "^4.1.11",
     "vite": "^7.0.4",
     "vitest": "^3.2.4"
   },
@@ -61,5 +64,9 @@
       "pre-commit": "npm run lint && npm run test"
     }
   },
-  "template": true
+  "template": true,
+  "browserslist": [
+    "defaults",
+    "not IE 11"
+  ]
 }

@@ -4,7 +4,8 @@
       "@testing-library/react",
       "eslint-config-react-app",
       "husky",
-      "@fingerprintjs/fingerprintjs"
+      "@fingerprintjs/fingerprintjs",
+      "web-vitals"
     ]
   }
 }

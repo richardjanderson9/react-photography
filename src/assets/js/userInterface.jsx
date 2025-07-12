@@ -3,22 +3,25 @@
   Description: UI components separated from main App logic.
   Author: Richard Anderson.
   Last Updated: 12-July-2025.
-  Version: 1.0.1.
-  Note: Updated to display text-only content.
+  Version: 1.1.0
 */
 
 // Imports
-import '../css/index.css'; // Universal CSS for the app.
 import '../css/userInterface.css'; // User Interface specific styles.
- 
+import UiMain from './ui_components/uiMain.jsx'; // Main UI component.
+import UiImages from './ui_components/uiImages.jsx'; // Images UI component.
+import UiNavigation from './ui_components/uiNavigation.jsx'; // Navigation UI component.
 
+// UserInterface component that combines all UI components.
 const UserInterface = () => {
-  // Main Render.
+  // Log the rendering of the UserInterface component.
   return (
     <div>
-      <h1>Welcome to the React App!</h1>
+      <UiNavigation />
+      <UiMain />
+      <UiImages />
     </div>
   );
 };
 
-export default UserInterface;
+export default UserInterface; // Export the UserInterface component for use in the main App.
