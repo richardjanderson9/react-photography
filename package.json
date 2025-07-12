@@ -36,7 +36,7 @@
   "homepage": "http://localhost:3000",
   "devDependencies": {
     "@vitejs/plugin-react": "^4.6.0",
-    "eslint": "^9.31.0",
+    "eslint": "^8.57.1",
     "eslint-config-react-app": "^7.0.1",
     "husky": "^9.1.7",
     "prettier": "^3.0.0",
