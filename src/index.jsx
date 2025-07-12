@@ -2,25 +2,21 @@
   Path: src/index.jsx
   Description: Entry point for the React application.
   Author: Richard Anderson.
-  Last Updated: 10-July-2025.
-  Version: 1.0.0.
+  Last Updated: 11-July-2025.
+  Version: 1.0.2.
   Note: This file contains both AI-generated (Copilot -- Claude 3.7) and manually added comments for code clarity.
 */
 
-// Assets Import! (React!).
+// Imports
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-
-// Assets Import! (Custom React!).
 import App from './app.jsx';
-
-// Assets Import! (Non-React!).
 import './assets/css/index.css';
 
 // Initialize React Root.
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-// Render App (no browser checks).
+// Render App.
 root.render(
   <React.StrictMode>
     <App />

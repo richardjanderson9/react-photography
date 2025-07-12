@@ -2,12 +2,12 @@
   Path: src/app.jsx
   Description: Main App component for the React application. Streamlined to render only UserInterface.
   Author: Richard Anderson.
-  Last Updated: 10-July-2025.
-  Version: 1.0.0.
+  Last Updated: 12-July-2025.
+  Version: 1.0.1.
   Note: Streamlined to render only UserInterface.
 */
 
-import React from 'react';
+// Imports
 import UserInterface from './assets/js/userInterface.jsx';
 
 // App Component Definition.

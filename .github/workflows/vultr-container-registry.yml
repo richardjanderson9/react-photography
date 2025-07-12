@@ -2,7 +2,7 @@
 # This workflow builds a Docker image, scans it for vulnerabilities,
 # and pushes it to the Vultr Container Registry upon a push to the main branch.
 
-name: react-photography
+name: Vultr Container Registry CI
 
 on:
   push:
