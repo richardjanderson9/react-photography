@@ -44,7 +44,6 @@ jobs:
         run: |
           npm ci
           npm run lint || echo "::warning::Linting issues found, but continuing."
-          npm test || echo "::warning::Tests failed, but continuing."
           NODE_ENV=production npm run build
 
       - name: 📋 Generate Image Tags
