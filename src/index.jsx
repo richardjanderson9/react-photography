@@ -12,7 +12,6 @@ import React from "react"; // React library for building user interfaces.
 import ReactDOM from "react-dom/client"; // ReactDOM for rendering React components to the DOM.
 import { BrowserRouter, Routes, Route } from "react-router-dom"; // React Router components for routing.
 import App from "./app.jsx"; // Main application component.
-import TestingApp from "./testing/TestingApp.jsx"; // Testing application component for development.
 import "./assets/css/userInterface.css"; // Universal CSS for the app.
 
 // Create a root element for React to render the application.
@@ -30,7 +29,16 @@ root.render(
       <Routes>
         <Route path="/" element={<App />} />
         {import.meta.env.DEV && (
-          <Route path="/testing" element={<TestingApp />} />
+          <Route
+            path="/testing"
+            element={
+              React.lazy(() =>
+                import('./testing/TestingApp.jsx').then((mod) => ({
+                  default: mod.TestingApp,
+                }))
+              )
+            }
+          />
         )}
       </Routes>
     </BrowserRouter>
