@@ -2,8 +2,8 @@
   Path: vite.config.js
   Description: Vite configuration file for a React application.
   Author: Richard Anderson.
-  Last Updated: 10-July-2025.
-  Version: 1.0.0
+  Last Updated: 18-July-2025.
+  Version: 1.0.1
   Note: Streamlined for simplicity.
 */
 
@@ -21,11 +21,20 @@ export default defineConfig({
   },
   build: {
     target: 'esnext',
-    outDir: 'build'
+    outDir: 'build',
+    sourcemap: true, // Enable source maps for production
+    assetsDir: 'assets' // Custom assets directory (optional)
   },
   resolve: {
     alias: {
-      '@': resolve(__dirname, 'src'),
+      '@': resolve(__dirname, 'src'), // Shortcut to src directory
     },
+  },
+  define: {
+    'process.env.VERSION': JSON.stringify('0.0.1'),
+  },
+  optimizeDeps: {
+    include: [],
+    exclude: []
   }
 });

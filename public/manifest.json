@@ -1,5 +1,5 @@
 {
-  "short_name": "PhotoPortfolio",
+  "short_name": "RA Photography",
   "name": "Richard Anderson Photography Portfolio",
   "icons": [
     {
@@ -26,6 +26,6 @@
   "orientation": "any",
   "description": "Richard Anderson's photography portfolio built with React, Vite, and Tailwind CSS.",
   "dir": "ltr",
-  "lang": "en-US",
+  "lang": "en-GB",
   "categories": ["photography", "portfolio", "media"]
 }

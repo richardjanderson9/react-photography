@@ -5,7 +5,8 @@
       "eslint-config-react-app",
       "husky",
       "@fingerprintjs/fingerprintjs",
-      "web-vitals"
+      "web-vitals",
+      "tailwindcss"
     ]
   }
 }
