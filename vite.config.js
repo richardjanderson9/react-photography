@@ -12,10 +12,8 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  server: {
-    open: true,
-  },
-  build: {
-    outDir: 'dist',
+  test: {
+    globals: true, // Enables global test functions like `test` and `expect`
+    environment: 'jsdom', // Simulates a browser environment for React testing
   },
 });

@@ -7,7 +7,7 @@ name: Vultr Container Registry CI
 on:
   push:
     branches:
-      - main # or your primary branch name
+      - main
 
 # Prevent multiple workflow runs for the same branch from overlapping.
 concurrency:
@@ -26,55 +26,41 @@ jobs:
       - name: 📥 Checkout Repository
         uses: actions/checkout@v4
 
-      - name: 🔧 Set up Docker Buildx
-        id: buildx
-        uses: docker/setup-buildx-action@v3
-        # This enables building multi-platform images (e.g., amd64, arm64).
+      - name: 🔧 Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22.15.0'
+          cache: 'npm'
 
       - name: 📦 Cache Node.js modules
         uses: actions/cache@v4
         with:
-          path: ~/.npm # The default directory for the npm cache.
+          path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
 
-      # This single step now handles all Node.js related tasks:
-      # installing dependencies, linting, testing, and building the app.
-      # This avoids running 'npm ci' multiple times.
       - name: 🏗️ Install Dependencies & Build App
         run: |
-          if [ -f package.json ]; then
-            npm ci
-            echo "--- Running Linter ---"
-            npm run lint || echo "::warning::Linting issues found, but continuing."
-            echo "--- Running Tests ---"
-            npm test || echo "::warning::Tests failed, but continuing."
-            echo "--- Building Production App ---"
-            NODE_ENV=production npm run build
-          else
-            echo "No package.json found, skipping Node.js build steps."
-          fi
+          npm ci
+          npm run lint || echo "::warning::Linting issues found, but continuing."
+          npm test || echo "::warning::Tests failed, but continuing."
+          NODE_ENV=production npm run build
 
       - name: 📋 Generate Image Tags
         id: meta
         run: |
-          # Creates two tags: 'latest' and one with the short commit SHA.
-          # Example: my-registry/my-app:latest, my-registry/my-app:123abc7
           TAGS="${{ secrets.VULTR_REGISTRY }}/react-photography:latest,${{ secrets.VULTR_REGISTRY }}/react-photography:${GITHUB_SHA::7}"
           echo "tags=${TAGS}" >> $GITHUB_OUTPUT
 
-      # This step builds a SINGLE platform image (amd64) and saves it as a local .tar file.
-      # This is an efficient way to create an artifact for vulnerability scanning
-      # without needing to push it to a registry first. This resolves the error.
       - name: 🔨 Build Image for Scanning (Single Platform)
         uses: docker/build-push-action@v5
         with:
           context: .
-          platforms: linux/amd64 # Build only for the runner's architecture for the scan
+          platforms: linux/amd64
           push: false
           tags: ${{ steps.meta.outputs.tags }}
-          outputs: type=docker,dest=/tmp/image.tar # Output as a tar file for Trivy
+          outputs: type=docker,dest=/tmp/image.tar
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
@@ -87,9 +73,8 @@ jobs:
           ignore-unfixed: true
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH'
-        continue-on-error: true # TODO: Remove this line after fixing Trivy scan - added for testing
+        continue-on-error: true
 
-      # The login step will only run if the Trivy scan above succeeds.
       - name: 🔓 Login to Vultr Container Registry
         if: success()
         uses: docker/login-action@v3
@@ -98,16 +83,13 @@ jobs:
           username: ${{ secrets.VULTR_USER }}
           password: ${{ secrets.VULTR_API_KEY }}
 
-      # This final step builds the MULTI-PLATFORM image again, but this time pushes it
-      # to the Vultr registry. The Docker layer cache makes this second build very fast.
-      # This step only runs if the login (and by extension, the scan) was successful.
       - name: 🚀 Build and Push Multi-Platform Image
         if: success()
         uses: docker/build-push-action@v5
         with:
           context: .
-          platforms: linux/amd64,linux/arm64 # Define all target platforms here
-          push: true # Push the image to the registry
+          platforms: linux/amd64,linux/arm64
+          push: true
           tags: ${{ steps.meta.outputs.tags }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
