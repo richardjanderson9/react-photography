@@ -92,3 +92,5 @@ workflow-artifacts/
 
 # npm
 !.npmcheckrc
+# testing directory
+src/testing/
