@@ -17,7 +17,7 @@ let TestingApp = null;
 
 // Dynamically import TestingApp only in development mode
 if (import.meta.env.DEV) {
-  TestingApp = React.lazy(() => import("./testing/TestingApp.jsx"));
+  TestingApp = React.lazy(() => import("./testing/testingApp.jsx")); // Updated filename.
 }
 
 ReactDOM.createRoot(document.getElementById("root")).render(
