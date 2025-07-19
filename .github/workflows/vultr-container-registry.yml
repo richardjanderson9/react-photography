@@ -46,11 +46,22 @@ jobs:
           npm run lint || echo "::warning::Linting issues found, but continuing."
           NODE_ENV=production npm run build
 
+      # Suggested Update: Add a testing step
+      - name: 🧪 Run Tests
+        run: npm test
+        # Add 'continue-on-error: true' if you want the workflow to proceed
+        # even if tests fail, but it's generally recommended to fail the build.
+
       - name: 📋 Generate Image Tags
         id: meta
         run: |
           TAGS="${{ secrets.VULTR_REGISTRY }}/react-photography:latest,${{ secrets.VULTR_REGISTRY }}/react-photography:${GITHUB_SHA::7}"
           echo "tags=${TAGS}" >> $GITHUB_OUTPUT
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+        with:
+          driver: docker-container # This specifies the container driver for Buildx
 
       - name: 🔨 Build Image for Scanning (Single Platform)
         uses: docker/build-push-action@v5
@@ -68,14 +79,15 @@ jobs:
         with:
           input: ./image.tar
           format: 'table'
-          exit-code: '1'
+          exit-code: '1' # This will make the step fail if critical/high vulnerabilities are found
           ignore-unfixed: true
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH'
-        continue-on-error: true
+        # Suggested Update: Removed 'continue-on-error: true'
+        # By removing 'continue-on-error: true', the workflow will now fail if Trivy finds
+        # vulnerabilities with CRITICAL or HIGH severity, improving security posture.
 
       - name: 🔓 Login to Vultr Container Registry
-        if: success()
         uses: docker/login-action@v3
         with:
           registry: ${{ secrets.VULTR_REGISTRY }}
@@ -83,7 +95,6 @@ jobs:
           password: ${{ secrets.VULTR_API_KEY }}
 
       - name: 🚀 Build and Push Multi-Platform Image
-        if: success()
         uses: docker/build-push-action@v5
         with:
           context: .
