@@ -1,6 +1,6 @@
 {
   "name": "react-photography",
-  "version": "0.1.4",
+  "version": "0.1.6",
   "private": true,
   "type": "module",
   "description": "My photography portfolio built with React, Vite, and Tailwind CSS.",

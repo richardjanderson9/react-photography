@@ -11,6 +11,7 @@ import '../css/userInterface.css'; // User Interface specific styles.
 import UiMain from './ui_components/uiMain.jsx'; // Main UI component.
 import UiImages from './ui_components/uiImages.jsx'; // Images UI component.
 import UiNavigation from './ui_components/uiNavigation.jsx'; // Navigation UI component.
+import UiAssesbility from './ui_components/uiAssesbility.jsx'; // Accessibility UI component.
 
 // UserInterface component that combines all UI components.
 const UserInterface = () => {
@@ -20,6 +21,7 @@ const UserInterface = () => {
       <UiNavigation />
       <UiMain />
       <UiImages />
+      <UiAssesbility />
     </div>
   );
 };
