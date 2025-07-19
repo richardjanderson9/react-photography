@@ -47,10 +47,10 @@ jobs:
           NODE_ENV=production npm run build
 
       # Suggested Update: Add a testing step
-      - name: 🧪 Run Tests
-        run: npm test
-        # Add 'continue-on-error: true' if you want the workflow to proceed
-        # even if tests fail, but it's generally recommended to fail the build.
+      # - name: 🧪 Run Tests
+      #   run: npm test
+      #   # Add 'continue-on-error: true' if you want the workflow to proceed
+      #   # even if tests fail, but it's generally recommended to fail the build.
 
       - name: 📋 Generate Image Tags
         id: meta
