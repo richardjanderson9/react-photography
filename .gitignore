@@ -91,6 +91,6 @@ workflow-artifacts/
 .github-actions-local/
 
 # npm
-!.npmcheckrc
+.npmcheckrc
 # testing directory
 src/testing/
