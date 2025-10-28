@@ -3,11 +3,12 @@
 # Description: Dockerfile for building and serving a React (Vite) application with Nginx.
 # Author: Richard Anderson.
 # Last Updated: 28-October-2025.
-# Version: 1.1.0
+# Version: 1.1.1
 # Notes:
 #   - Multi-stage build for optimized image size.
 #   - Uses Node.js (LTS-alpine) for build to automatically track the latest LTS release.
 #   - Uses Nginx (Alpine) for serving static content.
+#   - Applies package upgrade for pcre2 CVE-2025-58050 patch.
 #   - Copies custom Nginx config for SPA routing and gzip.
 #   - Exposes port 80 for HTTP traffic.
 #
@@ -30,6 +31,9 @@ RUN npm run build
 
 # Production image
 FROM nginx:alpine
+
+# Ensure security patches (pcre2 CVE-2025-58050 fix)
+RUN apk --no-cache upgrade pcre2
 
 # Copy built application to Nginx html directory
 COPY dist/ /etc/nginx/html/
