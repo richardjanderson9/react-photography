@@ -1,6 +1,6 @@
 {
   "name": "react-photography",
-  "version": "0.1.7",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
   "description": "My photography portfolio built with React, Vite, and Tailwind CSS.",
@@ -11,12 +11,12 @@
   "license": "MIT",
   "dependencies": {
     "@cloudinary/react": "^1.14.3",
-    "@cloudinary/url-gen": "^1.21.0",
-    "@fingerprintjs/fingerprintjs": "^4.6.2",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "react-router-dom": "^6.30.1",
-    "web-vitals": "^5.0.3"
+    "@cloudinary/url-gen": "^1.22.0",
+    "@fingerprintjs/fingerprintjs": "^5.0.1",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-router-dom": "^7.9.4",
+    "web-vitals": "^5.1.0"
   },
   "scripts": {
     "start": "vite",
@@ -39,17 +39,17 @@
   },
   "homepage": "http://localhost:3000",
   "devDependencies": {
-    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
-    "@vitejs/plugin-react": "^4.7.0",
-    "eslint": "^9.32.0",
+    "@vitejs/plugin-react": "^5.1.0",
+    "eslint": "^9.38.0",
     "husky": "^9.1.7",
-    "jsdom": "^26.1.0",
+    "jsdom": "^27.0.1",
     "prettier": "^3.0.0",
-    "tailwindcss": "^4.1.11",
-    "vite": "^7.0.6",
-    "vitest": "^3.2.4"
+    "tailwindcss": "^4.1.16",
+    "vite": "^7.1.12",
+    "vitest": "^4.0.4"
   },
   "engines": {
     "node": ">=22.15.0",
