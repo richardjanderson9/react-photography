@@ -26,8 +26,6 @@
     "lint": "eslint src/**/*.jsx",
     "lint:fix": "eslint src/**/*.jsx --fix",
     "format": "prettier --write src/**/*.{jsx,css,json,md}",
-    "prepare": "husky install",
-    "postinstall": "npm run prepare",
     "check": "npm run lint && npm run format && npm run test",
     "dev": "vite"
   },
@@ -44,9 +42,7 @@
     "@testing-library/user-event": "^14.6.1",
     "@vitejs/plugin-react": "^5.1.0",
     "eslint": "^9.38.0",
-    "husky": "^9.1.7",
     "jsdom": "^27.0.1",
-    "lint-staged": "^16.2.6",
     "prettier": "^3.0.0",
     "tailwindcss": "^4.1.16",
     "vite": "^7.1.12",
