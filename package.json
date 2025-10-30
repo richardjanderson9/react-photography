@@ -1,6 +1,6 @@
 {
   "name": "react-photography",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
   "description": "My photography portfolio built with React, Vite, and Tailwind CSS.",
@@ -10,12 +10,11 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@cloudinary/react": "^1.14.3",
     "@cloudinary/url-gen": "^1.22.0",
     "@fingerprintjs/fingerprintjs": "^5.0.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "react-router-dom": "^7.9.4",
+    "react-router-dom": "^7.9.5",
     "web-vitals": "^5.1.0"
   },
   "scripts": {
@@ -28,6 +27,8 @@
     "lint:fix": "eslint src/**/*.jsx --fix",
     "format": "prettier --write src/**/*.{jsx,css,json,md}",
     "prepare": "husky install",
+    "postinstall": "npm run prepare",
+    "check": "npm run lint && npm run format && npm run test",
     "dev": "vite"
   },
   "repository": {
@@ -39,22 +40,23 @@
   },
   "homepage": "http://localhost:3000",
   "devDependencies": {
-    "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
     "@vitejs/plugin-react": "^5.1.0",
     "eslint": "^9.38.0",
     "husky": "^9.1.7",
     "jsdom": "^27.0.1",
+    "lint-staged": "^16.2.6",
     "prettier": "^3.0.0",
     "tailwindcss": "^4.1.16",
     "vite": "^7.1.12",
-    "vitest": "^4.0.4"
+    "vitest": "^4.0.5"
   },
   "engines": {
     "node": ">=22.15.0",
     "npm": ">=11.4.2"
   },
+  "enginesStrict": true,
   "overrides": {
     "nth-check": "^2.1.1",
     "postcss": "^8.4.31",
@@ -68,13 +70,19 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint && npm run test"
+      "pre-commit": "lint-staged"
     }
   },
-  "template": true,
+  "lint-staged": {
+    "**/*.{jsx,js,css,json,md}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
   "browserslist": [
-    "defaults",
-    "not IE 11"
+    ">0.2%",
+    "not dead",
+    "not op_mini all"
   ],
   "main": "src/main.jsx",
   "module": "src/main.jsx"

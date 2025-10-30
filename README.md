@@ -2,6 +2,10 @@
 
 A modern web application for showcasing creative content.
 
+## Hosting
+
+This application is hosted at: [photography.richardjanderson.uk](https://photography.richardjanderson.uk)
+
 ## Project Structure
 
 ```

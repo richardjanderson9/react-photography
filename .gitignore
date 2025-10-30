@@ -35,3 +35,6 @@ yarn-error.log*
 # Testing directory
 src/testing/
 public/testing/
+
+## Local Cache.
+.npmcheckrc
