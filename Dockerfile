@@ -30,7 +30,7 @@ COPY . .
 RUN npm run build
 
 # Production image
-FROM nginx:alpine
+FROM nginx:1.29.3-alpine3.22-slim
 
 # Ensure security patches (pcre2 CVE-2025-58050 fix)
 RUN apk --no-cache add pcre2=10.46-r0
